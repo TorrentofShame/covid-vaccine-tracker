@@ -14,7 +14,7 @@ def get_map_data():
     radius = request.args.get("radius")
     pipeline = [{"$geoNear": {
         "near": {"type": "Point", "coordinates": [lat, long]},
-        "spherical": True
+        "spherical": True, "distanceField": "dist", "maxDistance": radius
     }}]
     map = Maps.objects.aggregate(*pipeline)
 
