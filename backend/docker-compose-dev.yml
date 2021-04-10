@@ -5,15 +5,6 @@ services:
         image: rabbitmq
         container_name: rabbitmq
         restart: unless-stopped
-
-    mongo:
-        image: cassandra
-        container_name: cassandra
-        restart: unless-stopped
-        ports:
-            - "127.0.0.1:7000:7000"
-        volumes:
-            - cassy-data:/var/lib/cassandra
             
     backend:
         build:
@@ -22,7 +13,6 @@ services:
         container_name: backend
         restart: unless-stopped
         depends_on:
-            - mongo
             - rabbitmq
         ports:
             - "127.0.0.1:5000:5000"
@@ -32,6 +22,3 @@ services:
             APP_SETTINGS: src.config.DevelopmentConfig
             MONGO_URI: "mongodb://mongo/test"
             CELERY_BROKER_URL: "amqp://rabbitmq"
-            
-volumes:
-    cassy-data:            
