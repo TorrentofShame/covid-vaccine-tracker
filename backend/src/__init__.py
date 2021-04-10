@@ -25,6 +25,10 @@ def create_app():
     CORS(app)
     db.init_app(app)
 
+    from src.api.maps import maps_blueprint
+
+    app.register_blueprint(maps_blueprint, url_prefix="/api")
+
     """Register Error Handlers"""
     from src.common import error_handler
 
