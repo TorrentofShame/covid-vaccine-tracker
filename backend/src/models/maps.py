@@ -1,5 +1,5 @@
 from src import db
-import src.models import BaseDocument
+from src.models import BaseDocument
 
 class Maps(BaseDocument):
     distance = db.FloatField()
