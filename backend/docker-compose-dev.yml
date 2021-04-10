@@ -1,21 +1,21 @@
 version: "3.9"
 services:
 
-    kh-rabbitmq:
+    rabbitmq:
         image: rabbitmq
         container_name: rabbitmq
         restart: unless-stopped
 
-    kh-mongo:
-        image: mongo
-        container_name: mongo
+    mongo:
+        image: cassandra
+        container_name: cassandra
         restart: unless-stopped
         ports:
             - "127.0.0.1:27017:27017"
         volumes:
-            - mongo-data:/data/db
+            - cassy-data:/var/lib/cassandra
             
-    kh-backend:
+    backend:
         build:
             context: ./python
             dockerfile: Dockerfile.dev
@@ -34,4 +34,4 @@ services:
             CELERY_BROKER_URL: "amqp://rabbitmq"
             
 volumes:
-    mongo-data:            
+    cassy-data:            
