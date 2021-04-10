@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+flask-mongoengine
+pyyaml
+celery
+gunicorn
+twilio

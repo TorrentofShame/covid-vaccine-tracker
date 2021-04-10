@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+
+    kh-rabbitmq:
+        image: rabbitmq
+        container_name: rabbitmq
+        restart: unless-stopped
+
+    kh-mongo:
+        image: mongo
+        container_name: mongo
+        restart: unless-stopped
+        ports:
+            - "127.0.0.1:27017:27017"
+        volumes:
+            - mongo-data:/data/db
+            
+    kh-backend:
+        build:
+            context: ./python
+            dockerfile: Dockerfile.dev
+        container_name: backend
+        restart: unless-stopped
+        depends_on:
+            - mongo
+            - rabbitmq
+        ports:
+            - "127.0.0.1:5000:5000"
+        volumes:
+            - ./python:/home/backend/app
+        environment:
+            APP_SETTINGS: src.config.DevelopmentConfig
+            MONGO_URI: "mongodb://mongo/test"
+            CELERY_BROKER_URL: "amqp://rabbitmq"
+            
+volumes:
+    mongo-data:            
