@@ -8,27 +8,28 @@ maps_blueprint = Blueprint("maps", __name__)
 @maps_blueprint.route("/maps/get_data/", methods=["GET"])
 def get_map_data():
 
-    #writing some code
+    # writing some code
     lat = request.args.get("lat")
     long = request.args.get("long")
     radius = request.args.get("radius")
+    pipeline = [{"$geoNear": {
+        "near": {"type": "Point", "coordinates": [lat, long]},
+        "spherical": True
+    }}]
+    map = Maps.objects.aggregate(*pipeline)
 
-    # gmaps = googlemaps.Client(key="AIzaSyAQNW22urGc8Z06R6aY3zXVwdDPmTbogsE")
-    map = Maps.objects(point={lat, long}).first()
+    # if not map:
+    #     raise NotFound()
 
-    if not map:
-        raise NotFound()
+    # res = {
+    #     "radius": map.radius,
+    #     "point": map.point,
+    #     "name": map.name,
+    #     "address": map.address,
+    #     "available": map.available
+    # }
 
-
-    res = {
-        "radius": map.radius,
-        "point": map.point,
-        "name": map.name,
-        "address": map.address,
-        "available": map.available
-    }
-
-    return res, 201
+    return (list(map)), 201
 
 @maps_blueprint.route("/maps/create_data/", methods=["POST"])
 def create_map_data():
