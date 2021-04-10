@@ -14,6 +14,7 @@ const staticData = [
       address: "fakeaddr1",
       distance: "1mi",
       available: true,
+      distance: 12,
   },
   {
       name: "Publix",
@@ -21,6 +22,7 @@ const staticData = [
       address: "fakeaddr2",
       distance: "1mi",
       available: false,
+      distance: 34,
   },
   {
       name: "Publix",
@@ -28,9 +30,14 @@ const staticData = [
       address: "fakeaddr3",
       distance: "1mi",
       available: true,
+      distance: 24,
   }
 ]
 
+const dummyLocation = {
+  lat: 20,
+  lng: 7,
+}
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -59,7 +66,7 @@ function App() {
             <SideBar />
           </Col>
           <Col sm={8}>
-            <VaccineMap data={staticData} />
+            <VaccineMap currentLocation={dummyLocation} data={staticData} />
           </Col>
         </Row>
       </Container>
