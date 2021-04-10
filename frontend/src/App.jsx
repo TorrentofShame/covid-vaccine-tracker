@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { SelLocContext } from "./contexts";
 import VaccineMap from './components/VaccineMap';
+import SideBar from "./components/SideBar";
 import './scss/App.scss';
 
-function App() {
+const App = () => {
+
+  const [SelLoc, setSelLoc] = useState({});
+
   return (
     <div className="App">
-      <VaccineMap />
+      <SelLocContext.Provider value={SelLoc}>
+        <SideBar />
+        <VaccineMap />
+      </SelLocContext.Provider>
     </div>
   );
-}
+};
 
 export default App;
