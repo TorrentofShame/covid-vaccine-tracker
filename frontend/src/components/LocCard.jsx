@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from "react-bootstrap/Card";
+import { SelLocContext } from "./contexts";
 
 const LocCard = ({name, address, distance, available}) => {
   render(
-    <Card role="button" className="loccard">
-      <Card.Title>{name}</Card.Title>
-      <Card.Text>{address}&mdash;{distance}</Card.Text>
-      <div className="avail-marker" data-status={available} title={available ? "available" : "unavailable"} />
-    </Card>
+    <SelLocContext.Consumer>
+      <Card role="button" className="loccard">
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>{address}&mdash;{distance}</Card.Text>
+        <div className="avail-marker" data-status={available} title={available ? "available" : "unavailable"} />
+      </Card>
+    </SelLocContext.Consumer>
   );
 };
 LocCard.propTypes = {

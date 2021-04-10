@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <SelLocContext.Provider value={SelLoc}>
+      <SelLocContext.Provider value={{SelLoc, setSelLoc}}>
         <SideBar />
         <VaccineMap />
       </SelLocContext.Provider>
