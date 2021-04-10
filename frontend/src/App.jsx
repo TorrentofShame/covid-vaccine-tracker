@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { SelLocContext } from "./contexts";
 import VaccineMap from './components/VaccineMap';
+import SideBar from "./components/SideBar";
 import './scss/App.scss';
 
 const staticData = [
@@ -21,9 +23,15 @@ const staticData = [
 ]
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
+  const [SelLoc, setSelLoc] = useState({});
+
   return (
     <div className="App">
-      <VaccineMap data={staticData} />
+      <SelLocContext.Provider value={SelLoc}>
+        <SideBar />
+        <VaccineMap data={staticData} />
+      </SelLocContext.Provider>
     </div>
   );
 }
