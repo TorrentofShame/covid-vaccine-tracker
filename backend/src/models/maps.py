@@ -2,7 +2,7 @@ from src import db
 from src.models import BaseDocument
 
 class Maps(BaseDocument):
-    distance = db.FloatField()
+    radius = db.FloatField()
     point = db.PointField()
     name = db.StringField()
     address = db.StringField()

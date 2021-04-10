@@ -7,9 +7,28 @@ from werkzeug.exceptions import BadRequest, Conflict, NotFound
 maps_blueprint = Blueprint("maps", __name__)
 @maps_blueprint.route("/maps/get_data/", methods=["GET"])
 def get_map_data():
-    gmaps = googlemaps.Client(key="AIzaSyAQNW22urGc8Z06R6aY3zXVwdDPmTbogsE")
-    reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
-    return "yu-gi-oh"
+
+    #writing some code
+    lat = request.args.get("lat")
+    long = request.args.get("long")
+    radius = request.args.get("radius")
+
+    # gmaps = googlemaps.Client(key="AIzaSyAQNW22urGc8Z06R6aY3zXVwdDPmTbogsE")
+    map = Maps.objects(point={lat, long}).first()
+
+    if not map:
+        raise NotFound()
+
+
+    res = {
+        "radius": map.radius,
+        "point": map.point,
+        "name": map.name,
+        "address": map.address,
+        "available": map.available
+    }
+
+    return res, 201
 
 @maps_blueprint.route("/maps/create_data/", methods=["POST"])
 def create_map_data():
