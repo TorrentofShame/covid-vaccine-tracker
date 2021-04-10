@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { BsFillInboxFill } from 'react-icons/bs';
 import { Button, Modal } from 'react-bootstrap';
-import '../scss/map.scss';
 import SubscribeModal from './SubscribeModal';
 import InfoViewWrapper from './InfoViewWrapper';
 

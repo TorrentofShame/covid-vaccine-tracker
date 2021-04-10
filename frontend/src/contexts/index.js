@@ -1,9 +1,13 @@
-import SelLocContext from "./SelLocContext";
-import UsrLocContext from "./UsrLocContext";
-import LocsContext from "./LocsContext";
+import React from "react";
 
-export {
-  LocsContext,
-  SelLocContext,
-  UsrLocContext
-};
+export const LocsContext = React.createContext([]);
+
+export const SelLocContext = React.createContext({
+  selloc: {},
+  setSelloc: () => {}
+});
+
+export const UsrLocContext = React.createContext({
+  usrloc: {},
+  setUsrloc: () => {}
+});
