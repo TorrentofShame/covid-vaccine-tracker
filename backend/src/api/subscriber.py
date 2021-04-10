@@ -6,12 +6,12 @@ from werkzeug.exceptions import BadRequest, Conflict, NotFound
 subscriber_blueprint = Blueprint("subscriber", __name__)
 @subscriber_blueprint.route("/subscriber/get_route/", methods=["GET"])
 def get_subscriber():
-    cell_phone = request.data.get("cell_phone")
-    subscriber = Subscriber.objects.get(cell_phone=cell_phone).first()
+    cellphone = request.data.get("cellphone")
+    subscriber = Subscriber.objects.get(cellphone=cellphone).first()
     if not subscriber:
         raise NotFound()
     res = {
-        "cell_phone": subscriber.cell_phone,
+        "cellphone": subscriber.cellphone,
         "email": subscriber.email,
         "vaccine_site": subscriber.vaccine_site
     }
