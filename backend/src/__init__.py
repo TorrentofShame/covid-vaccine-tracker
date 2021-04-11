@@ -23,6 +23,9 @@ def create_app():
     """Setup Extensions"""
     CORS(app)
     db.init_app(app)
+    
+    from src.common.json import JSONEncoderBase
+    app.json_encoder = JSONEncoderBase
 
     from src.api.maps import maps_blueprint
     from src.api.subscriber import subscriber_blueprint
