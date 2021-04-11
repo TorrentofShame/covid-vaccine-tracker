@@ -2,6 +2,8 @@ from flask import Blueprint, request
 from src.models.subscriber import Subscriber
 from mongoengine.errors import NotUniqueError
 from werkzeug.exceptions import BadRequest, Conflict, NotFound
+from src.models.maps import Maps
+
 
 subscriber_blueprint = Blueprint("subscriber", __name__)
 @subscriber_blueprint.route("/subscriber/get_route/", methods=["GET"])
@@ -21,6 +23,8 @@ def create_subscriber():
     data = request.get_json()
     if not data:
         raise BadRequest()
+    if(data.get("vaccine_site")):
+        data["vaccine_site"] = list(map(lambda lameName: Maps.objects(name=lameName).first(), data["vaccine_site"]))
     try:
         sub = Subscriber.createOne(**data)
     except NotUniqueError:
