@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-import googlemaps
 from src.models.maps import Maps
 from mongoengine.errors import NotUniqueError, ValidationError
 from werkzeug.exceptions import BadRequest, Conflict, NotFound
