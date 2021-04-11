@@ -30,7 +30,7 @@ services:
             - .:/home/backend/app
         environment:
             APP_SETTINGS: src.config.DevelopmentConfig
-            MONGO_URI: "mongodb://vaxtrack:ogZTyzrA8WJc3oXSm@db.vaxtracker.tech:27017/vaxtracker"
+            MONGO_URI: "mongodb://db.vaxtracker.tech:27017/vaxtracker"
             CELERY_BROKER_URL: "amqp://rabbitmq"
 
 volumes:
