@@ -17,7 +17,7 @@ $boxbg: #EEE;
   }
 }
 
-.loccard,.form-control,.btn {
+.loccard,.form-control,.btn[role="button"],.input-group-append>button {
   background: $boxbg;
   border: none;
 }
