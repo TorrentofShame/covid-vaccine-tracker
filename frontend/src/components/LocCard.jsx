@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import { SelLocContext } from "../contexts";
 
 const LocCard = ({loc}) => {
-  let {name, address, distance, available} = loc;
+  let {name, address, dist, available} = loc;
   return(
     <SelLocContext.Consumer>
       {({selloc, setSelLoc}) => (
@@ -15,7 +15,7 @@ const LocCard = ({loc}) => {
           className="loccard">
           <div>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{address}&mdash;{distance}</Card.Text>
+          <Card.Text>{address}&nbsp;&mdash;&nbsp;{Math.round(dist/1609*100)/100}mi</Card.Text>
           </div>
           <div
             className="avail-marker"
@@ -30,7 +30,7 @@ const LocCard = ({loc}) => {
 LocCard.propTypes = {
   name: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  distance: PropTypes.string.isRequired,
+  dist: PropTypes.string.isRequired,
   available: PropTypes.bool.isRequired
 };
 

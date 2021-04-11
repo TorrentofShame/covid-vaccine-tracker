@@ -18,17 +18,6 @@ def get_map_data():
     }}]
     map = Maps.objects.exclude("id").aggregate(*pipeline)
 
-    # if not map:
-    #     raise NotFound()
-
-    # res = {
-    #     "radius": map.radius,
-    #     "point": map.point,
-    #     "name": map.name,
-    #     "address": map.address,
-    #     "available": map.available
-    # }
-
     return (dict(d=list(map))), 201
 
 @maps_blueprint.route("/maps/create_data/", methods=["POST"])
@@ -42,6 +31,6 @@ def create_map_data():
         raise Conflict("Sorry this location already exists")
     res = {
         "status": "Success",
-        "message": "Location has been successfully created!" 
+        "message": "Location has been successfully created!"
     }
     return res, 201
