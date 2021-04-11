@@ -14,7 +14,7 @@ function SubscribeModal({ show, handleClose }) {
     function subscribeToLocation() {
         console.log(`http://localhost:5000/api/twilio/send_message/?cellphone=${currentValue}`)
 
-        fetch(`http://localhost:5000/api/twilio/send_message/?cellphone=${currentValue}`)
+        fetch(`http://covid_tracker.fetchit.dev/api/twilio/send_message/?cellphone=${currentValue}`)
         .then(response => response.text())
         .then(text => console.log(text));
     }

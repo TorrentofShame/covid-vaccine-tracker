@@ -37,7 +37,7 @@ function App() {
 
         console.log(d);
         // Call API
-        fetch(`http://localhost:5000/api/maps/get_data/?lat=${d.lat}&long=${d.lng}&radius=555555555`, { 
+        fetch(`http://covid_tracker.fetchit.dev/api/maps/get_data/?lat=${d.lat}&long=${d.lng}&radius=555555555`, { 
         })
         .then(result => result.json())
         .then(json => setLocs(json.d))
