@@ -1,6 +1,12 @@
 .vaccine-map {
-    //width: 80%!important;
-    //height: 80%!important;
+    width: inherit!important;
+    height: inherit!important;
     border-radius: 30px;
     overflow: hidden;
+    top: 25px/500px*100vh;
+    right: 25px;
+}
+
+.mapcol.col {
+    padding-right: 10px;
 }

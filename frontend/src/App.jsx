@@ -42,7 +42,7 @@ function App() {
   const [SelLoc, setSelLoc] = useState({});
   const [UsrLoc, setUsrLoc] = useState({});
   // eslint-disable-next-line no-unused-vars
-  const [Locs, setLocs] = useState([]);
+  const [Locs, setLocs] = useState(staticData);
 
   const Providers = ({children}) => (
     <UsrLocContext.Provider value={{UsrLoc, setUsrLoc}}>

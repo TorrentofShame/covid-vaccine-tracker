@@ -7,7 +7,9 @@ const SideBar = () => {
     <nav className="sidebar">
       <h1>Vaccine Locations</h1>
       <UsrLocInput />
-      <LocList />
+      <div className="locnwrapper">
+        <LocList />
+      </div>
     </nav>
   );
 };
