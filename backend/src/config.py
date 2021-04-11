@@ -10,6 +10,7 @@ class BaseConfig:
     MONGODB_HOST = os.getenv("MONGO_URI", "mongodb://vaxtrack:ogZTyzrA8WJc3oXSm@db.vaxtracker.tech:27017/vaxtracker")
     CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
     CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+    CORS_ORIGIN = "*"
     
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
