@@ -16,7 +16,7 @@ def get_map_data():
         "near": {"type": "Point", "coordinates": [lat, long]},
         "spherical": True, "distanceField": "dist", "maxDistance": radius
     }}]
-    map = Maps.objects.aggregate(*pipeline)
+    map = Maps.objects.exclude("id").aggregate(*pipeline)
 
     # if not map:
     #     raise NotFound()
