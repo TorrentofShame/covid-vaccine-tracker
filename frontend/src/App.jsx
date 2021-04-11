@@ -73,8 +73,10 @@ function App() {
     getLocation();
 
     // Call API
-    fetch(`http://localhost:5000/api/maps/get_data/?lat=${UsrLoc.lat}&long=${UsrLoc.lng}&radius=5`)
-    .then(result => result.json())
+    fetch(`http://localhost:5000/api/maps/get_data/?lat=${UsrLoc.lat}&long=${UsrLoc.lng}&radius=5`, {
+     
+    })
+    .then(result => console.log("status = " + result.status))
     .then(json => console.log(json))
     .catch(err => console.log(err));
   }, []);

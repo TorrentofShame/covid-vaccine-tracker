@@ -29,7 +29,7 @@ def get_map_data():
     #     "available": map.available
     # }
 
-    return (json.dumps(list(map))), 201
+    return (dict(d=list(map))), 201
 
 @maps_blueprint.route("/maps/create_data/", methods=["POST"])
 def create_map_data():
