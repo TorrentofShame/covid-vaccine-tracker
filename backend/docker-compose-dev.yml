@@ -1,20 +1,20 @@
 version: "3.9"
 services:
 
+    #mongo:
+        #image: mongo
+        #container_name: mongo
+        #restart: unless-stopped
+        #ports:
+            #- "127.0.0.1:27017:27017"
+        #volumes:
+            #- mongo-data:/data/db
+
     rabbitmq:
         image: rabbitmq
         container_name: rabbitmq
         restart: unless-stopped
 
-    mongo:
-        image: cassandra
-        container_name: cassandra
-        restart: unless-stopped
-        ports:
-            - "127.0.0.1:7000:7000"
-        volumes:
-            - cassy-data:/var/lib/cassandra
-            
     backend:
         build:
             context: .
@@ -22,7 +22,7 @@ services:
         container_name: backend
         restart: unless-stopped
         depends_on:
-            - mongo
+            #- mongo
             - rabbitmq
         ports:
             - "127.0.0.1:5000:5000"
@@ -30,8 +30,8 @@ services:
             - .:/home/backend/app
         environment:
             APP_SETTINGS: src.config.DevelopmentConfig
-            MONGO_URI: "mongodb://mongo/test"
+            MONGO_URI: "mongodb://vaxtrack:ogZTyzrA8WJc3oXSm@db.vaxtracker.tech:27017/vaxtracker"
             CELERY_BROKER_URL: "amqp://rabbitmq"
-            
+
 volumes:
-    cassy-data:            
+    mongo-data:

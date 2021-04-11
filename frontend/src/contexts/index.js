@@ -4,10 +4,10 @@ export const LocsContext = React.createContext([]);
 
 export const SelLocContext = React.createContext({
   selloc: {},
-  setSelloc: () => {}
+  setSelLoc: () => {}
 });
 
 export const UsrLocContext = React.createContext({
   usrloc: {},
-  setUsrloc: () => {}
+  setUsrLoc: () => {}
 });

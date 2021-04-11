@@ -5,15 +5,13 @@ import { LocsContext } from "../contexts";
 
 const LocList = () => {
 
-  const makeLs = ({ls}) => {
-    ls.map((l, i) => <LocCard key={i} loc={l} />);
+  const makeLs = (ls) => {
+    return ls.map((l, i) => <LocCard key={i} loc={l} />);
   };
 
   return(
     <LocsContext.Consumer>
-      {(locs) => (
-        <makeLs ls={locs} />
-      )}
+      {(locs) => makeLs(locs)}
     </LocsContext.Consumer>
   );
 };

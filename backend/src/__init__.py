@@ -4,7 +4,6 @@ from werkzeug.exceptions import HTTPException
 from flask_cors import CORS
 from flask_mongoengine import MongoEngine
 from src.tasks import make_celery
-
 db = MongoEngine()
 
 
@@ -24,6 +23,13 @@ def create_app():
     """Setup Extensions"""
     CORS(app)
     db.init_app(app)
+
+    from src.api.maps import maps_blueprint
+    from src.api.subscriber import subscriber_blueprint
+    from src.api.twilio import twilio_blueprint
+    app.register_blueprint(maps_blueprint, url_prefix="/api")
+    app.register_blueprint(subscriber_blueprint, url_prefix="/api")
+    app.register_blueprint(twilio_blueprint, url_prefix="/api")
 
     """Register Error Handlers"""
     from src.common import error_handler
