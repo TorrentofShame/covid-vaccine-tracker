@@ -1,8 +1,24 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 function SubscribeModal({ show, handleClose }) {
+
+    let currentValue = "";
+
+    function onInputChange(event) {
+        currentValue = event.target.value;
+        console.log(currentValue);
+    }
+
+    function subscribeToLocation() {
+        console.log(`http://localhost:5000/api/twilio/send_message/?cellphone=${currentValue}`)
+
+        fetch(`http://localhost:5000/api/twilio/send_message/?cellphone=${currentValue}`)
+        .then(response => response.text())
+        .then(text => console.log(text));
+    }
+
     return (
         <Modal show={show} handleClose={handleClose}>
           <Modal.Header closeButton>
@@ -10,17 +26,12 @@ function SubscribeModal({ show, handleClose }) {
           </Modal.Header>
 
           <Modal.Body>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="text" placeholder="Enter phone number" />
-          </Form.Group>
+              <input onChange={onInputChange} placeholder="Enter Phone Number" />
           </Modal.Body>
 
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>Close</Button>
-            <Button variant="primary" type="submit">Save changes</Button>
+            <Button variant="primary" type="submit" onClick={subscribeToLocation}>Save changes</Button>
           </Modal.Footer>
         </Modal>
     )
