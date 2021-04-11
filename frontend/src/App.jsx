@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -56,6 +56,22 @@ function App() {
   Providers.propTypes = {
     children: PropTypes.any.isRequired
   };
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        setUsrLoc({lat: position.coords.latitude, lng: position.coords.longitude})
+      }, () => {
+        console.log("Could not get location permission");
+      });
+    } else {
+      console.log("Unable get Location.");
+    }
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   return (
     <Providers>
